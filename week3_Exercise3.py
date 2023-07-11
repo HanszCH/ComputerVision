@@ -1,4 +1,3 @@
-#Exercise 3
 import sys
 #at least python 3.7
 assert sys.version_info >= (3, 7)
@@ -14,9 +13,8 @@ if not cap.isOpened():
 #parameters: filepath, fourcc, fps, frame width and height
 fourcc = cv.VideoWriter_fourcc("M", "J", "P", "G")#fourcc is an identifier for the algorithm which compress and decompress the video
 fps = 15
-w, h = int(cap.get(3)), int(cap.get(4))
+w, h = int(resized_frame.shape[1]), int(resized_frame.shape[0])
 out = cv.VideoWriter("smaller_img_pexels.avi", fourcc, fps, (w,h))
-
 
 
 # Read the frames with loop
@@ -27,6 +25,7 @@ while True:
         print("No frame detected")
         break
     resized_frame = cv.resize(frame, None,fx=0.5, fy=0.5)
+    
     out.write(resized_frame)
     cv.imshow("frame", resized_frame)
     k = cv.waitKey(1) &0xFF
